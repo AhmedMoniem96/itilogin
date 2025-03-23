@@ -1,4 +1,4 @@
-#!/home/mn3m/Desktop/django1/venv/bin/python3
+#!/home/mn3m/ITIMS/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

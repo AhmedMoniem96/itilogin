@@ -10,8 +10,10 @@
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
+                <th>Picture</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Course</th>  
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,8 +21,26 @@
             {% for trainee in trainees %}
             <tr>
                 <td>{{ trainee.id }}</td>
+                <td>s
+                    {% if trainee.picture %}
+                        <img src="{{ trainee.picture.url }}" alt="{{ trainee.name }}" class="img-thumbnail" style="width: 50px; height: 50px;">
+                    {% else %}
+                        <img src="https://via.placeholder.com/50" alt="No Picture" class="img-thumbnail" style="width: 50px; height: 50px;">
+                    {% endif %}
+                </td>
                 <td>{{ trainee.name }}</td>
                 <td>{{ trainee.email }}</td>
+                <td>
+                    {% if trainee.courses.all %}
+                        <ul>
+                            {% for course in trainee.courses.all %}
+                                <li>{{ course.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span>No courses assigned</span>
+                    {% endif %}
+                </td>
                 <td>
                     <a class="btn btn-warning btn-sm" href="{% url 'trainee_update' trainee.id %}">Edit</a>
                     <a class="btn btn-danger btn-sm" href="{% url 'trainee_delete' trainee.id %}">Delete</a>
@@ -28,7 +48,7 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" class="text-center">No trainees found.</td>
+                <td colspan="6" class="text-center">No trainees found.</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -38,4 +58,3 @@
 
 </div>
 {% endblock %}
-{{ trainees }}

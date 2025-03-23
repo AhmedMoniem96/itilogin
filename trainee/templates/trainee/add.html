@@ -3,19 +3,40 @@
 {% block content %}
     <div class="container">
         <h2>Add New Trainee</h2>
-    <form method="post" action="{% url 'trainee_add' %}">
-    {% csrf_token %}
-        <label>Name:</label>
-        <input type="text" name="name" required>
-    
-        <label>Email:</label>
-        <input type="email" name="email" required>
-    
-        <label>Age:</label>
-        <input type="number" name="age" required>
+        <form method="post" action="{% url 'trainee_add' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
 
-        <button type="submit">Add Trainee</button>
-    </form>
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
 
+            <!-- Age Field -->
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" name="age" id="age" class="form-control" required>
+            </div>
+
+            <!-- Picture Field -->
+            <div class="form-group">
+                <label for="picture">Profile Picture:</label>
+                <input type="file" name="picture" id="picture" class="form-control" accept="image/*">
+            </div>
+
+             <div class="mb-3">
+        <label for="id_courses" class="form-label">Courses:</label>
+        {{ form.courses }}  <!-- This will show checkboxes for courses -->
+    </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Add Trainee</button>
+        </form>
     </div>
 {% endblock %}
