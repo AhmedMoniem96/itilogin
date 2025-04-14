@@ -19,7 +19,7 @@ def course_create(request):
             return redirect('course_list')  # ✅ Match correct URL name
     else:
         form = CourseForm()
-    return render(request, 'courses/course_form.html', {'form': form})
+    return render(request, 'course/create.html', {'form': form})
 
 # ✅ Update an existing course
 @login_required
@@ -32,7 +32,7 @@ def course_update(request, pk):
             return redirect('course_list')  # ✅ Match correct URL name
     else:
         form = CourseForm(instance=course)
-    return render(request, 'courses/course_form.html', {'form': form})
+    return render(request, 'course/form.html', {'form': form})
 
 # ✅ Delete a course
 @login_required

@@ -22,7 +22,6 @@ class CustomLoginView(LoginView):
     template_name = 'trainee/login.html'  # Create this template
     redirect_authenticated_user = True
 
-@login_required
 def courses_list(request):
     return render(request, 'courses/course_list.html')  # Create this template
 
